@@ -6,7 +6,7 @@ const PORT = 3000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors()); // Enable CORS for cross-origin requests
+app.use(cors()); 
 
 app.get("/", (req, res) => {
   res.send("Hello World");
@@ -28,9 +28,8 @@ app.post("/bfhl", (req, res) => {
     const response = structuredClone(obj);
 
     data.forEach((ele) => {
-      // Check whether the element contains alphabets or numbers
       if (ele[0] >= "0" && ele[0] <= "9") {
-        ele = parseInt(ele); // Convert the element to an integer
+        ele = parseInt(ele); 
         console.log(ele);
 
         if (ele % 2 === 0) {
