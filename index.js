@@ -26,7 +26,7 @@ const obj = {
 app.post("/bfhl", (req, res) => {
   try {
     const {data} = req.body;
-  const response = structuredClone(template);
+  const response = structuredClone(obj);
   
   for(var i=0; i<data.length; i++){
     var ele = parseInt(data[i]);
