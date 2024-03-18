@@ -22,29 +22,26 @@ const obj = {
   alphabets: [],
 };
 
+
 app.post("/bfhl", (req, res) => {
   try {
-    const data = req.body;
-    const response = obj;
-
-    data.forEach((ele) => {
-      // Check whether the element contains alphabets or numbers
-      if (ele[0] >= "0" && ele[0] <= "9") {
-        ele = parseInt(ele); // Convert the element to an integer
-        console.log(ele);
-
-        if (ele % 2 === 0) {
-          response.even_numbers.push(ele);
-        } else {
-          response.odd_numbers.push(ele);
-        }
-      } else {
-        response.alphabets.push(ele.toUpperCase());
+    const {data} = req.body;
+  const response = structuredClone(template);
+  
+  for(var i=0; i<data.length; i++){
+    var ele = parseInt(data[i]);
+    if(isNaN(ele)){
+      response.alphebets.push(data[i].toUpperCase());
+    }else{
+      if(ele%2==0){
+        response.even_numbers.push(ele);
+      }else{
+        response.odd_numbers.push(ele);
       }
-    });
-
-    // Send the modified response object
-    res.json(response);
+    }
+    
+  }
+  res.json(response);
   } catch (error) {
     console.error("Error processing request:", error);
     res.status(500).json({ error: "Internal server error" });
