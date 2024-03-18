@@ -25,7 +25,7 @@ const obj = {
 app.post("/bfhl", (req, res) => {
   try {
     const {data} = req.body;
-    const response = obj;
+    const response = structuredClone(obj);
 
     data.forEach((ele) => {
       // Check whether the element contains alphabets or numbers
